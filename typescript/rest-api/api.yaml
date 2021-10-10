@@ -1,0 +1,57 @@
+# Note: APIs are defined in OpenAPI Spec 3. The following is a basic example, but can be extended using the specification standards.
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Orders API
+  description: Tutorial orders API
+paths:
+  /orders:
+    get:
+      operationId: list
+      x-nitric-target:
+        name: list
+        type: function
+      description: Retrieve all orders
+      responses:
+        "200":
+          description: Successful response
+    post:
+      operationId: create
+      x-nitric-target:
+        name: create
+        type: function
+      description: Creates and persists new orders
+      responses:
+        "200":
+          description: Successful response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderCreate"
+  /orders/{orderId}:
+    get:
+      operationId: read
+      parameters:
+        - in: path
+          name: orderId
+          schema:
+            type: string
+          required: true
+      x-nitric-target:
+        name: read
+        type: function
+      description: Retrieve an existing order by its ID
+      responses:
+        "200":
+          description: Successful response
+components:
+  schemas:
+    OrderCreate:
+      type: object
+      properties:
+        itemId:
+          type: string
+        customerId:
+          type: string
