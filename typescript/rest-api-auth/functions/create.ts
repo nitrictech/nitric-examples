@@ -1,6 +1,9 @@
+// functions/create.ts
+
 import { faas, documents } from "@nitric/sdk";
+import { jwtScopes } from "@nitric/middleware-jwt";
 import { uuid } from "uuidv4";
-import { Order } from "../common";
+import { Order, checkJwt } from "../common";
 
 // Requests to create a new order won't have an id or order date
 type RequestData = Omit<Order, "id" | "dateOrdered">;
@@ -19,6 +22,11 @@ interface CreateResponse {
 // Start your function here
 faas
   .http(
+    checkJwt({
+      domain: "tenant.region.auth0.com",
+      audience: "https://orders-api.example.com",
+    }),
+    jwtScopes(["create:orders"]),
     faas.json(), //  use json body parser middleware to decode data
     async (ctx: CreateContext): Promise<faas.HttpContext> => {
       const data = ctx.req.body;

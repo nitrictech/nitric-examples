@@ -10,7 +10,7 @@ faas
     const { orderId } = path.test(ctx.req.path);
 
     if (!orderId) {
-      ctx.res.body = "Invalid Request";
+      ctx.res.body = new TextEncoder().encode("Invalid request");
       ctx.res.status = 400;
     }
 
