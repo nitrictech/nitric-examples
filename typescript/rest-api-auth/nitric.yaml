@@ -1,0 +1,15 @@
+name: rest-api
+# Nitric functions
+functions:
+  create:
+    handler: functions/create.ts
+  read:
+    handler: functions/read.ts
+  list:
+    handler: functions/list.ts
+# Nitric collections
+collections:
+  orders: {}
+# Nitric APIs
+apis:
+  orders: api.yaml
