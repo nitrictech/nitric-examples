@@ -1,0 +1,15 @@
+name: rest-api
+# Nitric functions
+functions:
+  create:
+    handler: target/create.jar
+  read:
+    handler: target/read.jar
+  list:
+    handler: target/list.jar
+# Nitric collections
+collections:
+  orders: {}
+# Nitric APIs
+apis:
+  orders: api.yaml
