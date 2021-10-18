@@ -1,0 +1,15 @@
+name: rest-api
+# Nitric functions
+functions:
+  create:
+    handler: functions/create.py
+  read:
+    handler: functions/read.py
+  list:
+    handler: functions/list.py
+# Nitric collections
+collections:
+  orders: {}
+# Nitric APIs
+apis:
+  orders: api.yaml

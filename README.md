@@ -31,3 +31,8 @@ If there is a missing example, please feel free to [open an issue](https://githu
 | ------------------------------------------------------------ | ------------------------------- |
 | [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/java/rest-api) | An example REST API using Java. |
 
+## Python
+
+| Example                                                      | Description                     |
+| ------------------------------------------------------------ | ------------------------------- |
+| [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/python/rest-api) | An example REST API using Python. |
