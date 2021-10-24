@@ -9,8 +9,8 @@
   <span>&nbsp;&nbsp;&#10137;&nbsp;&nbsp;</span>
   <a href="https://twitter.com/nitric_io">Twitter</a>
 </div>
-
 <br />
+
 <hr />
 <br />
 
@@ -36,3 +36,10 @@ If there is a missing example, please feel free to [open an issue](https://githu
 | Example                                                      | Description                     |
 | ------------------------------------------------------------ | ------------------------------- |
 | [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/python/rest-api) | An example REST API using Python. |
+
+## Sites
+
+| Example                                                      | Description                                    |
+| ------------------------------------------------------------ | ---------------------------------------------- |
+| [`react-with-api`](https://github.com/nitrictech/nitric-examples/tree/main/sites/react-with-api) | An example React site with TypeScript REST API |
+
