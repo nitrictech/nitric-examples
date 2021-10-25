@@ -1,12 +1,12 @@
+import json
 import dataclasses
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import Union
 
-from nitric.faas import start, Trigger, Response
+from nitric import faas
+from nitric.faas import HttpContext, start
 from nitric.api import Documents
 from common.example import generate_id
-
 
 @dataclass(frozen=True)
 class OrderRequest:
@@ -15,21 +15,19 @@ class OrderRequest:
   id: str = field(default_factory=lambda: str(generate_id()))
   dateOrdered: str = field(default_factory=lambda: str(datetime.now()))
 
-
-async def handler(request: Trigger) -> Union[dict, Response]:
-  order = OrderRequest(**request.get_object())
-
+async def httpHandler(ctx: HttpContext) -> HttpContext:
+  order = OrderRequest(**json.loads(ctx.req.data))
   orders = Documents().collection('orders')
 
   try:
     await orders.doc(order.id).set(dataclasses.asdict(order))
-    return {"message": "success", "orderId": order.id}
+    ctx.res.status = 200
+    ctx.res.body = f'Created example with ID: {order.id}'.encode('utf-8')
   except:
-    response = request.default_response()
-    response.context.as_http().status = 500
-    response.data = {"message": "failed to create order"}
-    return response
+    ctx.res.status = 500
+    ctx.res.body = b'Failed to create order'
 
+  return ctx
 
 if __name__ == "__main__":
-  start(handler)
+  start(httpHandler)

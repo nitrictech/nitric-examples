@@ -1,27 +1,22 @@
-from typing import Union
+import json
 
+from nitric.faas import HttpContext, start
 from nitric.api import Documents
-from nitric.faas import start, Trigger, Response
 
-
-async def handler(request: Trigger) -> Union[dict, Response]:
-  order_id = request.context.as_http().path.split("/")[2]  # use a parser in a real project.
-
+async def httpHandler(ctx: HttpContext) -> HttpContext:
+  order_id = ctx.req.path.split("/")[-1]  # use a parser in a real project.
   orders = Documents().collection("orders")
 
   try:
     order = await orders.doc(order_id).get()
 
-    return {
-      "id": order.id,
-      "order": order.content,
-    }
+    ctx.res.status = 200
+    ctx.res.body = json.dumps(order.content).encode('utf-8')
   except:
-    response = request.default_response()
-    response.context.as_http().status = 404
-    response.data = {"message": f"order with id: {order_id} not found"}
-    return response
-
+    ctx.res.status = 404
+    ctx.res.body = 'Order with id: {order_id} not found'.encode("utf-8")
+  
+  return ctx
 
 if __name__ == "__main__":
-  start(handler)
+  start(httpHandler)
