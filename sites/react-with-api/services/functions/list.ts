@@ -1,12 +1,12 @@
-import { faas, documents } from '@nitric/sdk';
-import { Example } from '../common';
+import { faas, documents } from "@nitric/sdk";
+import { Example } from "../common";
 
 // Start your function here
 faas
   .http(async (ctx: faas.HttpContext): Promise<faas.HttpContext> => {
     try {
       const examples = await documents()
-        .collection<Example>('examples')
+        .collection<Example>("examples")
         .query()
         .fetch();
 
@@ -17,9 +17,8 @@ faas
       }
       ctx.res.json(exampleResults);
     } catch (e) {
-      console.log(e);
-      ctx.res.status = 404;
-      ctx.res.body = new TextEncoder().encode('Examples not found!');
+      ctx.res.status = 500;
+      ctx.res.body = new TextEncoder().encode("An unexpected error occurred");
     }
 
     return ctx;

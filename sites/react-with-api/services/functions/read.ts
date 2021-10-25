@@ -22,9 +22,7 @@ faas
       ctx.res.json(example);
     } catch (e) {
       ctx.res.status = 404;
-      ctx.res.body = new TextEncoder().encode(
-        `Example not found!: ${e.message}`
-      );
+      ctx.res.body = new TextEncoder().encode("Example not found");
     }
 
     return ctx;
