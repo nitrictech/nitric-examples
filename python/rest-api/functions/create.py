@@ -4,7 +4,7 @@ from datetime import datetime
 from dataclasses import dataclass, field
 
 from nitric import faas
-from nitric.faas import HttpContext, start
+from nitric.faas import HttpContext, http
 from nitric.api import Documents
 from common.example import generate_id
 
@@ -30,4 +30,4 @@ async def httpHandler(ctx: HttpContext) -> HttpContext:
   return ctx
 
 if __name__ == "__main__":
-  start(httpHandler)
+  http(httpHandler).start()

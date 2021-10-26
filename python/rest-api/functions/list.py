@@ -1,6 +1,6 @@
 import json
 
-from nitric.faas import HttpContext, start
+from nitric.faas import HttpContext, http
 from nitric.api import Documents
 
 async def httpHandler(ctx: HttpContext) -> HttpContext:
@@ -24,4 +24,4 @@ async def httpHandler(ctx: HttpContext) -> HttpContext:
   return ctx
 
 if __name__ == "__main__":
-  start(httpHandler)
+  http(httpHandler).start()
