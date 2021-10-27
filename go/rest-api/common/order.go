@@ -1,3 +1,6 @@
+// [START snippet]
+// common/order.go
+
 package common
 
 type Order struct {
@@ -6,3 +9,5 @@ type Order struct {
 	ItemID      string `json:"itemId"`
 	CustomerID  string `json:"customerId"`
 }
+
+// [END snippet]

@@ -1,3 +1,6 @@
+// [START snippet]
+// functions/create.ts
+
 import { faas, documents } from "@nitric/sdk";
 import { uuid } from "uuidv4";
 import { Order } from "../common";
@@ -49,3 +52,5 @@ faas
     }
   )
   .start();
+
+// [END snippet]

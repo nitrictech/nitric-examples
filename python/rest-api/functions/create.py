@@ -1,3 +1,6 @@
+# [START snippet]
+# functions/create.py
+
 import json
 import dataclasses
 from datetime import datetime
@@ -31,3 +34,5 @@ async def httpHandler(ctx: HttpContext) -> HttpContext:
 
 if __name__ == "__main__":
   http(httpHandler).start()
+
+# [END snippet]

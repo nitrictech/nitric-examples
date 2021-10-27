@@ -1,3 +1,6 @@
+# [START snippet]
+# functions/list.py
+
 import json
 
 from nitric.faas import HttpContext, http
@@ -25,3 +28,5 @@ async def httpHandler(ctx: HttpContext) -> HttpContext:
 
 if __name__ == "__main__":
   http(httpHandler).start()
+
+# [END snippet]

@@ -1,3 +1,4 @@
+// [START snippet]
 // functions/read.ts
 
 import { faas, documents } from "@nitric/sdk";
@@ -27,3 +28,5 @@ faas
     return ctx;
   })
   .start();
+
+// [END snippet]  

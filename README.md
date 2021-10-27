@@ -25,17 +25,23 @@ If there is a missing example, please feel free to [open an issue](https://githu
 | [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/typescript/rest-api) | An example REST API using TypeScript.                        |
 | [`rest-api-auth`](https://github.com/nitrictech/nitric-examples/tree/main/typescript/rest-api-auth) | An example REST API with authentication (using [Auth0](https://auth0.com/)). |
 
+## Python
+
+| Example                                                      | Description                     |
+| ------------------------------------------------------------ | ------------------------------- |
+| [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/python/rest-api) | An example REST API using Python. |
+
 ## Java
 
 | Example                                                      | Description                     |
 | ------------------------------------------------------------ | ------------------------------- |
 | [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/java/rest-api) | An example REST API using Java. |
 
-## Python
+## Go
 
 | Example                                                      | Description                     |
 | ------------------------------------------------------------ | ------------------------------- |
-| [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/python/rest-api) | An example REST API using Python. |
+| [`rest-api`](https://github.com/nitrictech/nitric-examples/tree/main/go/rest-api) | An example REST API using Go. |
 
 ## Sites
 

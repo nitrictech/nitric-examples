@@ -1,3 +1,6 @@
+// [START snippet]
+// src/main/java/common/Order.java
+
 package common;
 
 public class Order {
@@ -6,3 +9,5 @@ public class Order {
     public String itemId;
     public String customerId;    
 }
+
+// [END snippet]

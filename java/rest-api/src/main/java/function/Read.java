@@ -1,3 +1,6 @@
+// [START snippet]
+// src/main/java/function/Read.java
+
 package function;
 
 import common.Order;
@@ -47,3 +50,5 @@ public class Read {
             .start();
     }
 }
+
+// [END snippet]
