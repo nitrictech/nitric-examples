@@ -1,3 +1,6 @@
+// [START snippet]
+// functions/list/main.go
+
 package main
 
 import (
@@ -49,3 +52,5 @@ func main() {
 		fmt.Println(err)
 	}
 }
+
+// [END snippet]

@@ -1,3 +1,6 @@
+// [START snippet]
+// src/main/java/function/Create.java
+
 package function;
 
 import java.io.IOException;
@@ -40,3 +43,5 @@ public class Create {
     }
 
 }
+
+// [END snippet]
