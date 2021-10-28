@@ -1,5 +1,4 @@
 // [START snippet]
-// functions/list/main.go
 
 package main
 

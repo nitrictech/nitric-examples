@@ -1,5 +1,4 @@
 # [START snippet]
-# functions/create.py
 
 import json
 import dataclasses

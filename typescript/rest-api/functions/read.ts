@@ -1,5 +1,4 @@
 // [START snippet]
-// functions/read.ts
 
 import { faas, documents } from "@nitric/sdk";
 import { path } from "../common";

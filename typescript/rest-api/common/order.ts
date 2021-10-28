@@ -1,5 +1,4 @@
 // [START snippet]
-// common/orders.ts
 
 export interface Order {
   id: string;

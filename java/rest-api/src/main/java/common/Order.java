@@ -1,5 +1,4 @@
 // [START snippet]
-// src/main/java/common/Order.java
 
 package common;
 

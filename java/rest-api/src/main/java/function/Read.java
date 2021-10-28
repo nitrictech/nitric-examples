@@ -1,5 +1,4 @@
 // [START snippet]
-// src/main/java/function/Read.java
 
 package function;
 
@@ -32,17 +31,17 @@ public class Read {
         
                     context.getResponse()
                         .contentType("application/json")
-                        .data(json);
+                        .text(json);
                 
                 } catch (NotFoundException nfe) {
                     context.getResponse()
                         .status(404)
-                        .data("Document not found: " + id);
+                        .text("Document not found: %s", id);
                         
                 } catch (IOException ioe) {
                     context.getResponse()
                         .status(500)
-                        .data("Error querying orders: " + ioe.toString());
+                        .text("Error querying orders: %s", ioe);
                 }
         
                 return context;

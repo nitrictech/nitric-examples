@@ -3,12 +3,11 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/nitrictech/go-sdk/api/documents"
 	"github.com/nitrictech/go-sdk/faas"
-	"nitric.io/rest-api/common"
+	"nitric.io/example-service/common"
 )
 
 func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, error) {
@@ -25,18 +24,13 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 		return nil, err
 	}
 
-	doc, err := dc.Collection("orders").Doc(id).Get()
+	err = dc.Collection("examples").Doc(id).Delete()
 	if err != nil {
-		ctx.Response.Body = []byte("Error retrieving document")
-		ctx.Response.Status = 404
+		ctx.Response.Body = []byte("Error deleting document")
+		ctx.Response.Status = 500
 	} else {
-		b, err := json.Marshal(doc.Content())
-		if err != nil {
-			return nil, err
-		}
-
-		ctx.Response.Headers["Content-Type"] = []string{"application/json"}
-		ctx.Response.Body = b
+		ctx.Response.Body = []byte("Successfully deleted document")
+		ctx.Response.Status = 200
 	}
 
 	return next(ctx)
@@ -45,7 +39,7 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 func main() {
 	err := faas.New().Http(
 		// Retrieve path parameters if available
-		common.PathParser("/orders/:id"),
+		common.PathParser("/examples/:id"),
 		// Actual Handler
 		handler,
 	).Start()

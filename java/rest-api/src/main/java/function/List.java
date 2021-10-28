@@ -1,5 +1,4 @@
 // [START snippet]
-// src/main/java/function/List.java
 
 package function;
 
@@ -34,12 +33,12 @@ public class List {
 
                     context.getResponse()
                         .contentType("application/json")
-                        .data(json);
+                        .text(json);
         
                 } catch (IOException ioe) {
                     context.getResponse()
                         .status(500)
-                        .data("Error querying orders: " + ioe.toString());
+                        .text("Error querying orders: %s", ioe);
                 }
         
                 return context;

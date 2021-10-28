@@ -1,4 +1,4 @@
-// functions/create.ts
+// [START snippet]
 
 import { faas, documents } from "@nitric/sdk";
 import { jwtScopes } from "@nitric/middleware-jwt";
@@ -57,3 +57,5 @@ faas
     }
   )
   .start();
+
+// [END snippet]  
