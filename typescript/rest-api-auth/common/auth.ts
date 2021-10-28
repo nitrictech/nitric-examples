@@ -1,4 +1,4 @@
-// common/auth.ts
+// [START snippet]
 
 import { jwt, GetSecretOptions } from "@nitric/middleware-jwt";
 import * as jwksRsa from "jwks-rsa";
@@ -50,3 +50,5 @@ export const checkJwt = ({ domain, audience }: Auth0Config) =>
     },
     algorithms: ["RS256"],
   });
+
+// [END snippet]

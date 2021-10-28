@@ -1,5 +1,4 @@
 // [START snippet]
-// common/order.go
 
 package common
 

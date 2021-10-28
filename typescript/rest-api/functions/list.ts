@@ -1,5 +1,4 @@
 // [START snippet]
-// functions/list.ts
 
 import { faas, documents } from "@nitric/sdk";
 import { Order } from "../common";

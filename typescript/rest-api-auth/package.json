@@ -1,7 +1,7 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "description": "An example typescript api",
+  "description": "An example typescript api with Auth0",
   "author": "You :)",
   "private": true,
   "license": "UNLICENSED",

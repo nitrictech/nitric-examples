@@ -1,5 +1,4 @@
 # [START snippet]
-# functions/list.py
 
 import json
 

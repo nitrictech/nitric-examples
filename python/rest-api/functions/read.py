@@ -1,5 +1,4 @@
 # [START snippet]
-# functions/read.py
 
 import json
 
