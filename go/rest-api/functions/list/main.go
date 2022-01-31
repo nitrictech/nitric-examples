@@ -8,17 +8,16 @@ import (
 
 	"github.com/nitrictech/go-sdk/api/documents"
 	"github.com/nitrictech/go-sdk/faas"
+	"github.com/nitrictech/go-sdk/resources"
+)
+
+var (
+	orders documents.CollectionRef
 )
 
 func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, error) {
-	dc, err := documents.New()
-	if err != nil {
-		return nil, err
-	}
-
-	query := dc.Collection("orders").Query()
+	query := orders.Query()
 	results, err := query.Fetch()
-
 	if err != nil {
 		return nil, err
 	}
@@ -42,11 +41,14 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 }
 
 func main() {
-	err := faas.New().Http(
-		// Actual Handler
-		handler,
-	).Start()
+	var err error
+	orders, err = resources.NewCollection("orders", resources.CollectionReading)
+	if err != nil {
+		panic(err)
+	}
+	mainApi := resources.NewApi("rest-api")
 
+	err = mainApi.Get("/orders/", handler)
 	if err != nil {
 		fmt.Println(err)
 	}

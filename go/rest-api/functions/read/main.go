@@ -8,26 +8,25 @@ import (
 
 	"github.com/nitrictech/go-sdk/api/documents"
 	"github.com/nitrictech/go-sdk/faas"
+	"github.com/nitrictech/go-sdk/resources"
 	"nitric.io/rest-api/common"
+)
+
+var (
+	orders documents.CollectionRef
 )
 
 func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, error) {
 	params, ok := ctx.Extras["params"].(map[string]string)
-
 	if !ok || params == nil {
 		return nil, fmt.Errorf("error retrieving path params")
 	}
 
 	id := params["id"]
 
-	dc, err := documents.New()
+	doc, err := orders.Doc(id).Get()
 	if err != nil {
-		return nil, err
-	}
-
-	doc, err := dc.Collection("orders").Doc(id).Get()
-	if err != nil {
-		ctx.Response.Body = []byte("Error retrieving document")
+		ctx.Response.Body = []byte("Error retrieving document " + id)
 		ctx.Response.Status = 404
 	} else {
 		b, err := json.Marshal(doc.Content())
@@ -43,13 +42,14 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 }
 
 func main() {
-	err := faas.New().Http(
-		// Retrieve path parameters if available
-		common.PathParser("/orders/:id"),
-		// Actual Handler
-		handler,
-	).Start()
+	var err error
+	orders, err = resources.NewCollection("orders", resources.CollectionReading)
+	if err != nil {
+		panic(err)
+	}
+	mainApi := resources.NewApi("rest-api")
 
+	err = mainApi.Get("/orders/:id", common.PathParser("/orders/:id"), handler)
 	if err != nil {
 		fmt.Println(err)
 	}
