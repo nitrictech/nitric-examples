@@ -11,7 +11,12 @@ import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/nitrictech/go-sdk/api/documents"
 	"github.com/nitrictech/go-sdk/faas"
+	"github.com/nitrictech/go-sdk/resources"
 	"nitric.io/rest-api/common"
+)
+
+var (
+	orders documents.CollectionRef
 )
 
 // Updates context with error information
@@ -35,14 +40,16 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 	id := uuid.New().String()
 	order.ID = id
 
-	dc, _ := documents.New()
-
 	// Convert the document to a map[string]interface{}
 	// for storage, future iterations of the go-sdk may include direct interface{} storage as well
 	orderMap := make(map[string]interface{})
-	_ = mapstructure.Decode(order, &orderMap)
+	err := mapstructure.Decode(order, &orderMap)
+	if err != nil {
+		httpError(ctx, "error decoding orders document", 400)
+		return ctx, nil
+	}
 
-	if err := dc.Collection("orders").Doc(id).Set(orderMap); err != nil {
+	if err := orders.Doc(id).Set(orderMap); err != nil {
 		httpError(ctx, "error writing orders document", 400)
 		return ctx, nil
 	}
@@ -54,11 +61,14 @@ func handler(ctx *faas.HttpContext, next faas.HttpHandler) (*faas.HttpContext, e
 }
 
 func main() {
-	err := faas.New().Http(
-		// Actual Handler
-		handler,
-	).Start()
+	var err error
+	orders, err = resources.NewCollection("orders", resources.CollectionWriting)
+	if err != nil {
+		panic(err)
+	}
+	mainApi := resources.NewApi("rest-api")
 
+	err = mainApi.Post("/orders/", handler)
 	if err != nil {
 		fmt.Println(err)
 	}
